@@ -1,0 +1,12 @@
+@import "reset.css";
+
+/* components */
+@import "components/card.css";
+
+/* screens */
+@import "screens/choose.css";
+
+body {
+  font-family: "Nanum Pen Script", cursive;
+  color: white;
+}

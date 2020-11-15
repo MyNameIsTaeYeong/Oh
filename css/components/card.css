@@ -1,0 +1,26 @@
+.choose-screen__card {
+  width: 200px;
+  height: 300px;
+  background-color: #ee5a24;
+  border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.choose-screen__card > p {
+  font-size: 50px;
+}
+
+.choose-screen__card > button {
+  background: none;
+  border: none;
+  font-size: 50px;
+}
+
+.choose-screen__card button :active,
+.choose-screen__card button :hover {
+  outline: none;
+  border: none;
+}
