@@ -1,0 +1,23 @@
+.main-screen {
+  height: 150vh;
+  background-color: #eccc68;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.main-screen__div1 {
+  width: 100%;
+  height: 30%;
+}
+
+.main-screen__div2 {
+  width: 100%;
+  height: 30%;
+}
+
+.main-screen__div3 {
+  width: 100%;
+  height: 30%;
+}
