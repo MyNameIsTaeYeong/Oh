@@ -16,11 +16,6 @@
 .choose-screen__card > button {
   background: none;
   border: none;
-  font-size: 50px;
-}
-
-.choose-screen__card button :active,
-.choose-screen__card button :hover {
   outline: none;
-  border: none;
+  font-size: 50px;
 }
