@@ -8,50 +8,6 @@
 @import 'screens/choose.css';
 @import 'screens/main.css';
 
-/* Global */
-
-:root {
-  /* Color */
-
-  --color-white: #ffffff;
-  --color-light-white: #eeeeee;
-  --color-dark-white: #bdbdbd;
-  --color-blur-white: #ffffff17;
-  --color-violet: #af79f5f8;
-  --color-dark-violet: #6416adb0;
-  --color-dark-grey: #4d4d4d;
-  --color-grey: #616161;
-  --color-light-grey: #7c7979;
-  --color-blur-grey: #5f5f5fb0;
-  --color-skyblue: #b9d1e0;
-  --color-light-blue: #d6e3f5;
-  --color-blue: #4677fe;
-  --color-orange: #ffd000;
-  --color-black: #000000;
-  --color-light-black: #111111;
-  --color-blur-black: #202020d3;
-
-  /* Font size */
-
-  --font-large: 48px;
-  --font-medium: 28px;
-  --font-regular: 18px;
-  --font-small: 16px;
-  --font-micro: 14px;
-
-  /* Font weight */
-
-  --weight-bold: 700;
-  --weight-semi-bold: 600;
-  --weight-regular: 400;
-
-  /* Size */
-  --size-border-radius: 4px;
-
-  /* Animation */
-  --animation-duration: 300ms;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -73,6 +29,16 @@ body {
   margin: 20px;
 }
 
+.arrowUp {
+  position: fixed;
+  font-size: 30px;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
 /* 
 .horizontal__flex {
   display: flex;
