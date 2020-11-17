@@ -115,7 +115,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: "";
+  content: '';
   content: none;
 }
 table {
@@ -128,6 +128,9 @@ input:focus {
 }
 
 a {
+  display: block;
   color: inherit;
   text-decoration: none;
+  font-size: 40px;
+  margin: 20px;
 }

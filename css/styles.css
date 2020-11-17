@@ -1,22 +1,78 @@
-@import "reset.css";
+@import 'reset.css';
 
 /* components */
-@import "components/card.css";
-@import "components/button.css";
+@import 'components/card.css';
+@import 'components/button.css';
 
 /* screens */
-@import "screens/choose.css";
-@import "screens/main.css";
+@import 'screens/choose.css';
+@import 'screens/main.css';
 
-body {
-  font-family: "Nanum Pen Script", cursive;
-  color: white;
+/* Global */
+
+:root {
+  /* Color */
+
+  --color-white: #ffffff;
+  --color-light-white: #eeeeee;
+  --color-dark-white: #bdbdbd;
+  --color-blur-white: #ffffff17;
+  --color-violet: #af79f5f8;
+  --color-dark-violet: #6416adb0;
+  --color-dark-grey: #4d4d4d;
+  --color-grey: #616161;
+  --color-light-grey: #7c7979;
+  --color-blur-grey: #5f5f5fb0;
+  --color-skyblue: #b9d1e0;
+  --color-light-blue: #d6e3f5;
+  --color-blue: #4677fe;
+  --color-orange: #ffd000;
+  --color-black: #000000;
+  --color-light-black: #111111;
+  --color-blur-black: #202020d3;
+
+  /* Font size */
+
+  --font-large: 48px;
+  --font-medium: 28px;
+  --font-regular: 18px;
+  --font-small: 16px;
+  --font-micro: 14px;
+
+  /* Font weight */
+
+  --weight-bold: 700;
+  --weight-semi-bold: 600;
+  --weight-regular: 400;
+
+  /* Size */
+  --size-border-radius: 4px;
+
+  /* Animation */
+  --animation-duration: 300ms;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Black Han Sans', sans-serif;
+  color: rgb(255, 255, 255);
+  text-shadow: rgb(122, 112, 126) 1px 0 10px;
+  text-align: center;
+  background: rgb(215, 228, 255);
+  background: linear-gradient(
+    137deg,
+    rgba(215, 228, 255, 1) 0%,
+    rgba(255, 192, 235, 1) 100%
+  );
+}
+
+/* 
 .horizontal__flex {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  flex-direction: column;
 }
 
 .vertical__flex {
@@ -24,4 +80,4 @@ body {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-}
+} */
