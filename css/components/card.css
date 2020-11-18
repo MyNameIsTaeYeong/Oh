@@ -14,6 +14,30 @@
   justify-content: space-around;
 }
 
+/* .cardSleep {
+  background-color: rgba(184, 183, 238, 0.966);
+}
+
+.cardFull {
+  background-color: rgba(216, 183, 238, 0.966);
+}
+
+.cardStudy {
+  background-color: rgba(238, 183, 238, 0.966);
+}
+
+.cardDiet {
+  background-color: rgba(238, 183, 215, 0.966);
+}
+
+.cardThree {
+  background-color: rgba(238, 183, 201, 0.966);
+}
+
+.cardDepressed {
+  background-color: rgba(238, 183, 183, 0.966);
+} */
+
 .choose-screen__card > p {
   margin: 20px;
   font-size: 50px;
@@ -45,10 +69,23 @@
 }
 
 .main-screen__card {
-  width: 100px;
+  width: 280px;
   height: 200px;
-  background-color: #ee5a24;
+  -webkit-box-shadow: inset -1px 3px 8px 5px #d1dfeeea,
+    2px 5px 16px 0px #c9dcf3f1, 3px 2px 10px 3px rgba(0, 0, 0, 0);
+  box-shadow: inset -1px 3px 8px 5px #f0e1ffea, 2px 5px 16px 0px #ddd4fae5,
+    3px 2px 10px 3px rgba(0, 0, 0, 0);
+  border: 6px solid rgb(237, 236, 241);
   border-radius: 5%;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.button__style > i.changeColor {
+  color: rgb(189, 142, 211);
 }
 
 @media screen and (max-width: 768px) {

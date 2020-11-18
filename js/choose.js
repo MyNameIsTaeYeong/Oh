@@ -20,12 +20,12 @@ function handleClick(event){
         // icon.classList.remove('far');
         // icon.classList.add('fas');
         icon.classList.remove('changeColor');
-        btn.value = 1;
+        btn.value = 0;
     }else{
         // icon.classList.remove('fas');
         icon.classList.add('changeColor');
         // icon.classList.add('far');
-        btn.value = 0;
+        btn.value = 1;
     }
 
 }

@@ -29,20 +29,9 @@ body {
   margin: 20px;
 }
 
-.arrowUp {
-  position: fixed;
-  font-size: 30px;
-  bottom: 10px;
-  right: 10px;
-  border-radius: 50%;
-  outline: none;
-  border: none;
-  cursor: pointer;
-}
-/* 
 .horizontal__flex {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .vertical__flex {
@@ -50,4 +39,4 @@ body {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-} */
+}

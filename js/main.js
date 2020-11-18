@@ -12,22 +12,40 @@ function paintCard(cardName){
     
     const div = document.createElement("div");
     const p = document.createElement("p");
-    const btnHigh = document.createElement("button");
-    const btnLow = document.createElement("button");
-    const iUp = document.createElement('i');
-    const iDown = document.createElement('i');
+    const btnSmile = document.createElement("button");
+    const btnMeh = document.createElement("button");
+    const btnFrown = document.createElement("button");
+    const iSmile = document.createElement('i');
+    const iMeh = document.createElement('i');
+    const iFrown = document.createElement('i');
+    const iBox=document.createElement('div');
+
     // <i class="far fa-thumbs-up"></i>
+{/* <i class="far fa-smile-beam"></i>
+         <i class="far fa-meh"></i><i class="far fa-frown"></i> */}
+    iSmile.classList.add("far");
+    iSmile.classList.add("fa-smile-beam");
 
-    iUp.classList.add("far");
-    iUp.classList.add("fa-thumbs-up");
+    iMeh.classList.add("far");
+    iMeh.classList.add("fa-meh");
 
-    iDown.classList.add("far");
-    iDown.classList.add("fa-thumbs-down");
-    btnHigh.appendChild(iUp);
-    btnLow.appendChild(iDown);
+    iFrown.classList.add("far");
+    iFrown.classList.add("fa-frown");
 
-    btnHigh.classList.add("button__style");
-    btnLow.classList.add("button__style");
+    btnSmile.appendChild(iSmile);
+    btnMeh.appendChild(iMeh);
+    btnFrown.appendChild(iFrown);
+
+    btnSmile.classList.add("button__style");
+    btnMeh.classList.add("button__style");
+    btnFrown.classList.add("button__style");
+    
+
+    iBox.appendChild(btnSmile);
+    iBox.appendChild(btnMeh);
+    iBox.appendChild(btnFrown);
+
+    iBox.classList.add("horizontal__flex");
 
     p.innerText = cardName;
 
@@ -35,18 +53,19 @@ function paintCard(cardName){
     div.classList.add("vertical__flex");
     
     div.appendChild(p);
-    div.appendChild(btnHigh);
-    div.appendChild(btnLow);
+    div.appendChild(iBox);
+    
     cardCount++;
-    if(cardCount<=2){
-        div1.appendChild(div);
-    }
-    else if(cardCount<=4){
-        div2.appendChild(div);
-    }
-    else {
-        div3.appendChild(div);
-    }
+    mainScreen.appendChild(div);
+    // if(cardCount<=2){
+    //     div1.appendChild(div);
+    // }
+    // else if(cardCount<=4){
+    //     div2.appendChild(div);
+    // }
+    // else {
+    //     div3.appendChild(div);
+    // }
 }
 
 function loadCards(){
