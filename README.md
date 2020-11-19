@@ -1,6 +1,6 @@
 # Oh
 
-+ what?
-+ how?
-+ why?
-+ other problems
+- what?
+- how?
+- why?
+- other problems
