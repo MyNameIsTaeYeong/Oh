@@ -17,14 +17,10 @@ function handleClick(event){
     const icon = event.target;
     const btn = icon.parentNode;
     if(icon.classList.contains('changeColor')){
-        // icon.classList.remove('far');
-        // icon.classList.add('fas');
         icon.classList.remove('changeColor');
         btn.value = 0;
     }else{
-        // icon.classList.remove('fas');
         icon.classList.add('changeColor');
-        // icon.classList.add('far');
         btn.value = 1;
     }
 

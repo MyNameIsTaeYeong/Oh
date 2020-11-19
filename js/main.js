@@ -20,7 +20,6 @@ function paintCard(cardName){
     const iFrown = document.createElement('i');
     const iBox=document.createElement('div');
 
-    // <i class="far fa-thumbs-up"></i>
 {/* <i class="far fa-smile-beam"></i>
          <i class="far fa-meh"></i><i class="far fa-frown"></i> */}
     iSmile.classList.add("far");
@@ -57,15 +56,7 @@ function paintCard(cardName){
     
     cardCount++;
     mainScreen.appendChild(div);
-    // if(cardCount<=2){
-    //     div1.appendChild(div);
-    // }
-    // else if(cardCount<=4){
-    //     div2.appendChild(div);
-    // }
-    // else {
-    //     div3.appendChild(div);
-    // }
+   
 }
 
 function loadCards(){
