@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.14.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oh!</title>
+</head>
+<body>
+   <main class="choose-screen">
+      <p class="description">아래로 내리면서<br> 주요 카테고리를 <br> 골라주세요!</p>
+     <div class="choose-screen__card cardSleep">
+        <p>수면</p>
+        <div class="line"></div>
+        <button id="btn__sleep" value="0"><i class="far fa-check-circle"></i></button>
+     </div>
+     <div class="choose-screen__card cardFull">
+        <p>포만감</p>
+        <div class="line"></div>
+        <button id="btn__full" value="0"><i class="far fa-check-circle"></i></button>
+     </div>
+     <div class="choose-screen__card cardStudy">
+        <p>공부</p>
+        <div class="line"></div>
+        <button id="btn__study" value="0"><i class="far fa-check-circle"></i></button>
+     </div>
+     <div class="choose-screen__card cardDiet">
+        <p>폭식</p>
+        <div class="line"></div>
+        <button id="btn__greed" value="0"><i class="far fa-check-circle"></i></button>
+     </div>
+     <div class="choose-screen__card cardThree">
+        <p>3대 중량</p>
+        <div class="line"></div>
+        <button id="btn__freeweight" value="0"><i class="far fa-check-circle"></i></button>
+     </div>
+     <div class="choose-screen__card cardDepressed">
+        <p>무기력함</p>
+        <div class="line"></div>
+        <button id="btn__lazy" value="0"><i class="far fa-check-circle"></i></button>
+     </div>
+     <div class="go"><a id="js-go" href="main.html">GO!</a></div>
+   </main>
+   <script src="js/choose.js"></script>
+</body>
+</html>
+
