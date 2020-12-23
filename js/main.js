@@ -1,80 +1,52 @@
-const mainScreen = document.querySelector(".main-screen");
-const div1 = document.querySelector(".main-screen__div1");
-const div2 = document.querySelector(".main-screen__div2");
-const div3 = document.querySelector(".main-screen__div3");
+const calendarHead = document.querySelector(".calendar__head");
+const calendarHeadTitle = document.querySelector(".calendar__head-title");
+const calendarBody = document.querySelector(".calendar__body");
+const leapYearMonth = [31,29,31,30,31,30,31,31,30,31,30,31];
+const notLeapYearMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
 
 
-const BTNS_LS = 'btns';
+function paintCalendar(){
+    let months;
+    let day = 1;
+    const today = new Date();
 
-let cardCount = 0;
-
-function paintCard(cardName){
-    
-    const div = document.createElement("div");
-    const p = document.createElement("p");
-    const btnHigh = document.createElement("button");
-    const btnLow = document.createElement("button");
-    const iUp = document.createElement('i');
-    const iDown = document.createElement('i');
-    // <i class="far fa-thumbs-up"></i>
-
-    iUp.classList.add("far");
-    iUp.classList.add("fa-thumbs-up");
-
-    iDown.classList.add("far");
-    iDown.classList.add("fa-thumbs-down");
-    btnHigh.appendChild(iUp);
-    btnLow.appendChild(iDown);
-
-    btnHigh.classList.add("button__style");
-    btnLow.classList.add("button__style");
-
-    p.innerText = cardName;
-
-    div.classList.add("main-screen__card");
-    div.classList.add("vertical__flex");
-    
-    div.appendChild(p);
-    div.appendChild(btnHigh);
-    div.appendChild(btnLow);
-    cardCount++;
-    if(cardCount<=2){
-        div1.appendChild(div);
+    // 윤년 체크
+    if(today.getFullYear() % 4 === 0){
+        months = leapYearMonth;
+    } else {
+        months = notLeapYearMonth;
     }
-    else if(cardCount<=4){
-        div2.appendChild(div);
-    }
-    else {
-        div3.appendChild(div);
-    }
-}
 
-function loadCards(){
-    const loadedCards = localStorage.getItem(BTNS_LS);
-    
-    if(loadedCards[0] === '1'){
-        paintCard("수면");
-    }
-    if(loadedCards[2] === '1'){
-        paintCard("포만감");
-    }
-    if(loadedCards[4] === '1'){
-        paintCard("공부");
-    }
-    if(loadedCards[6] === '1'){
-        paintCard("폭식");
-    }
-    if(loadedCards[8] === '1'){
-        paintCard("3대 중량");
-    }
-    if(loadedCards[10] === '1'){
-        paintCard("무기력함");
-        
+    // 첫째날의 요일 (첫째주에 무슨요일부터 1일인지를 표현하기 위함)
+    const firstDay = new Date(today.getFullYear(), today.getMonth(), 1).getDay();
+    calendarHeadTitle.innerHTML = today.getMonth()+1+"월";
+
+    for(let i=0; i<6; i++){
+        const tr = document.createElement("tr");
+        console.log(tr);
+        for(let j=0; j<7; j++){
+            const td = document.createElement("td");
+            // 첫째주이면서, 1일 이전의 요일은 빈칸 
+            if(i===0 && j<firstDay){
+                tr.appendChild(td);
+            } else {
+                td.textContent = day;
+                tr.appendChild(td);
+                day++;
+                
+                // 그 달의 말일인 경우 반복문 탈출
+                if(day > months[today.getMonth()])
+                    break;
+            }
+        }
+        calendarBody.appendChild(tr);
+        if(day > months[today.getMonth()])
+            break;
     }
 }
 
 function init(){
-    loadCards();
+    paintCalendar();
 }
 
 

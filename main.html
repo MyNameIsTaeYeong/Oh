@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.14.0/css/all.min.css"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="css/styles.css" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oh!</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oh!</title>
 </head>
 <body>
-   <main class="main-screen">
-      <div class="horizontal__flex main-screen__div1"></div>
-      <div class="horizontal__flex main-screen__div2"></div>
-      <div class="horizontal__flex main-screen__div3"></div>
-   </main>
-
-   
-
-   <script src="js/main.js"></script>
+  <table class="calendar">
+    <thead class="calendar__head">
+      <tr>
+        <th colspan="7" class="calendar__head-title"></th>
+      </tr>
+    </thead>
+    <tbody class="calendar__body">
+      <tr>
+        <td>일</td>
+        <td>월</td>
+        <td>화</td>
+        <td>수</td>
+        <td>목</td>
+        <td>금</td>
+        <td>토</td>
+      </tr>
+    </tbody>
+  </table>
+  <script src="js/main.js"></script>
 </body>
 </html>
