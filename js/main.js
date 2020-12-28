@@ -1,90 +1,102 @@
-const mainScreen = document.querySelector(".main-screen");
-const div1 = document.querySelector(".main-screen__div1");
-const div2 = document.querySelector(".main-screen__div2");
-const div3 = document.querySelector(".main-screen__div3");
+const calendarHead = document.querySelector(".calendar__head");
+const calendarHeadTitle = document.querySelector(".calendar__head-title");
+const calendarBody = document.querySelector(".calendar__body");
+
+const prevBtn = document.querySelector("#prev");
+const nextBtn = document.querySelector("#next");
+
+const leapYearMonth = [31,29,31,30,31,30,31,31,30,31,30,31];
+const notLeapYearMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+// 그리고 싶은 달의 첫째날
+let firstDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
 
 
-const BTNS_LS = 'btns';
+function paintCalendar(){
+    let months;
+    let day = 1;
 
-let cardCount = 0;
+    // 윤년 체크
+    if(firstDate.getFullYear() % 4 === 0){
+        months = leapYearMonth;
+    } else {
+        months = notLeapYearMonth;
+    }
 
-function paintCard(cardName){
-    
-    const div = document.createElement("div");
-    const p = document.createElement("p");
-    const btnSmile = document.createElement("button");
-    const btnMeh = document.createElement("button");
-    const btnFrown = document.createElement("button");
-    const iSmile = document.createElement('i');
-    const iMeh = document.createElement('i');
-    const iFrown = document.createElement('i');
-    const iBox=document.createElement('div');
+    // 첫째날의 요일 (첫째주에 무슨요일부터 1일인지를 표현하기 위함)
+    const firstDay = firstDate.getDay();
+    calendarHeadTitle.innerHTML = firstDate.getFullYear()+"년 "+(firstDate.getMonth()+1)+"월";
 
-{/* <i class="far fa-smile-beam"></i>
-         <i class="far fa-meh"></i><i class="far fa-frown"></i> */}
-    iSmile.classList.add("far");
-    iSmile.classList.add("fa-smile-beam");
-
-    iMeh.classList.add("far");
-    iMeh.classList.add("fa-meh");
-
-    iFrown.classList.add("far");
-    iFrown.classList.add("fa-frown");
-
-    btnSmile.appendChild(iSmile);
-    btnMeh.appendChild(iMeh);
-    btnFrown.appendChild(iFrown);
-
-    btnSmile.classList.add("button__style");
-    btnMeh.classList.add("button__style");
-    btnFrown.classList.add("button__style");
-    
-
-    iBox.appendChild(btnSmile);
-    iBox.appendChild(btnMeh);
-    iBox.appendChild(btnFrown);
-
-    iBox.classList.add("horizontal__flex");
-
-    p.innerText = cardName;
-
-    div.classList.add("main-screen__card");
-    div.classList.add("vertical__flex");
-    
-    div.appendChild(p);
-    div.appendChild(iBox);
-    
-    cardCount++;
-    mainScreen.appendChild(div);
-   
+    for(let i=0; i<6; i++){
+        const tr = document.createElement("tr");
+        tr.className = 'week';
+        
+        for(let j=0; j<7; j++){
+            const td = document.createElement("td");
+            
+            // 첫째주이면서, 1일 이전의 요일은 빈칸 
+            if(i===0 && j<firstDay){
+                tr.appendChild(td);
+            } else {
+                td.id = `${firstDate.getFullYear()}${firstDate.getMonth()+1}${day<10?'0'+day:day}`;
+                td.textContent = day;
+                tr.appendChild(td);
+                day++;
+                
+                // 그 달의 말일인 경우 반복문 탈출
+                if(day > months[firstDate.getMonth()])
+                    break;
+            }
+        }
+        calendarBody.appendChild(tr);
+        if(day > months[firstDate.getMonth()])
+            break;
+    }
 }
 
-function loadCards(){
-    const loadedCards = localStorage.getItem(BTNS_LS);
+
+function deleteCalendar(){
+    const tds = document.querySelectorAll(".week > td");
+    tds.forEach(function(e){
+        e.remove();
+    });
+
+    const trs = document.querySelectorAll(".week");
+    trs.forEach(function(e){
+        e.remove();
+    });
+
+}
+
+function prev(){
+    deleteCalendar();
+
+    if(firstDate.getMonth() === 0){
+        firstDate = new Date(firstDate.getFullYear() -1 , 11, 1);
+    }else{
+        firstDate = new Date(firstDate.getFullYear(), firstDate.getMonth()-1, 1);
+    }
     
-    if(loadedCards[0] === '1'){
-        paintCard("수면");
+    paintCalendar();
+
+}
+
+function next(){
+    deleteCalendar();
+
+    if(firstDate.getMonth() === 11){
+        firstDate = new Date(firstDate.getFullYear()+1, 0, 1);
+    } else {
+        firstDate = new Date(firstDate.getFullYear(), firstDate.getMonth()+1, 1);
     }
-    if(loadedCards[2] === '1'){
-        paintCard("포만감");
-    }
-    if(loadedCards[4] === '1'){
-        paintCard("공부");
-    }
-    if(loadedCards[6] === '1'){
-        paintCard("폭식");
-    }
-    if(loadedCards[8] === '1'){
-        paintCard("3대 중량");
-    }
-    if(loadedCards[10] === '1'){
-        paintCard("무기력함");
-        
-    }
+
+    paintCalendar();
 }
 
 function init(){
-    loadCards();
+    paintCalendar();
+    prevBtn.addEventListener("click", prev);
+    nextBtn.addEventListener("click", next);
 }
 
 

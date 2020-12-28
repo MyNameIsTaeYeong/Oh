@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.14.0/css/all.min.css"
-    />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet"> 
-    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css" />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mynameistaeyeong.github.io/Oh/">
-    <meta property="og:title" content="너의 패턴을 알아봐">
-    <meta property="og:description" content="패턴을 하나하나 분석해보자!">
-    <meta property="og:image" content="3.jpg">
-    <meta name="Keywords" content="ty, pattern, lalolalo" />
-    <meta name="Description" content="lalalalala~~~~~" />
-    <meta name="Robots" content="noindex, nofollow" />
-    <title>Oh!</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oh!</title>
 </head>
 <body>
-   <main class="main-screen">
-   </main>
+  <table class="calendar">
+    <thead class="calendar__head">
+      <tr>
+        <td><button id="prev">p</button></td>
+        <th colspan="5" class="calendar__head-title"></th>
+        <td><button id="next">n</button></td>
+      </tr>
+    </thead>
+    <tbody class="calendar__body">
+      <tr>
+        <td>일</td>
+        <td>월</td>
+        <td>화</td>
+        <td>수</td>
+        <td>목</td>
+        <td>금</td>
+        <td>토</td>
+      </tr>
+    </tbody>
+  </table>
+  <script src="js/main.js"></script>
 
-   <script src="js/main.js"></script>
-   <script src="js/main_choose.js"></script>
 </body>
 </html>
