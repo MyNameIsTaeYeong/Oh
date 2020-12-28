@@ -16,14 +16,12 @@ let btns = [];
 function handleClick(event){
     const icon = event.target;
     const btn = icon.parentNode;
-    if(icon.classList.contains('far')){
-        icon.classList.remove('far');
-        icon.classList.add('fas');
-        btn.value = 1;
-    }else{
-        icon.classList.remove('fas');
-        icon.classList.add('far');
+    if(icon.classList.contains('changeColor')){
+        icon.classList.remove('changeColor');
         btn.value = 0;
+    }else{
+        icon.classList.add('changeColor');
+        btn.value = 1;
     }
 
 }
@@ -49,3 +47,4 @@ function init(){
 }
 
 init();
+

@@ -11,6 +11,7 @@ const notLeapYearMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
 // 그리고 싶은 달의 첫째날
 let firstDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
 
+
 function paintCalendar(){
     let months;
     let day = 1;
@@ -53,6 +54,7 @@ function paintCalendar(){
     }
 }
 
+
 function deleteCalendar(){
     const tds = document.querySelectorAll(".week > td");
     tds.forEach(function(e){
@@ -63,6 +65,7 @@ function deleteCalendar(){
     trs.forEach(function(e){
         e.remove();
     });
+
 }
 
 function prev(){
@@ -98,3 +101,4 @@ function init(){
 
 
 init();
+
