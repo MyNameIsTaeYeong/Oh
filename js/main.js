@@ -8,6 +8,8 @@ const nextBtn = document.querySelector("#next");
 const leapYearMonth = [31,29,31,30,31,30,31,31,30,31,30,31];
 const notLeapYearMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
 
+let clickedDate;
+
 // 그리고 싶은 달의 첫째날
 let firstDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
 
@@ -52,6 +54,14 @@ function paintCalendar(){
         if(day > months[firstDate.getMonth()])
             break;
     }
+
+    clickedDate = document.querySelectorAll(".week > td");
+    
+    for(let i=0; i<clickedDate.length; i++){
+        if(clickedDate[i].id !== ''){
+            clickedDate[i].addEventListener('click', viewDay);
+        } 
+    }
 }
 
 
@@ -93,10 +103,17 @@ function next(){
     paintCalendar();
 }
 
+function viewDay(event){
+    console.log(this.id);
+    
+}
+
 function init(){
     paintCalendar();
+    viewDay(`${new Date().getFullYear()}`+`${new Date().getMonth()+1}`+`${new Date().getDate()<10?'0'+new Date().getDate():new Date().getDate()}`);
     prevBtn.addEventListener("click", prev);
     nextBtn.addEventListener("click", next);
+    
 }
 
 
