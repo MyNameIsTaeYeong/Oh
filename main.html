@@ -3,29 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://kit.fontawesome.com/2490bbb41f.js" crossorigin="anonymous"></script>
   <title>Oh!</title>
 </head>
 <body>
-  <table class="calendar">
-    <thead class="calendar__head">
-      <tr>
-        <td><button id="prev">p</button></td>
-        <th colspan="5" class="calendar__head-title"></th>
-        <td><button id="next">n</button></td>
-      </tr>
-    </thead>
-    <tbody class="calendar__body">
-      <tr>
-        <td>일</td>
-        <td>월</td>
-        <td>화</td>
-        <td>수</td>
-        <td>목</td>
-        <td>금</td>
-        <td>토</td>
-      </tr>
-    </tbody>
-  </table>
+  <main class="main">
+    <table class="calendar">
+      <thead class="calendar__head">
+        <tr>
+          <td><button id="prev"><i class="fas fa-arrow-left"></i></button></td>
+          <th colspan="5" class="calendar__head-title"></th>
+          <td><button id="next"><i class="fas fa-arrow-right"></i></button></td>
+        </tr>
+      </thead>
+      <tbody class="calendar__body">
+        <tr>
+          <td>일</td>
+          <td>월</td>
+          <td>화</td>
+          <td>수</td>
+          <td>목</td>
+          <td>금</td>
+          <td>토</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="viewer">
+
+    </div>
+  </main>
+  
   <script src="js/main.js"></script>
 
 </body>
