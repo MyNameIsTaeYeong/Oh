@@ -1,10 +1,49 @@
-
-.main-screen {
-  min-height: 100vh;
-  background-color: rgba(215, 228, 255, 0);
-  padding: 30px 0px;
+.main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
+  background-color: #ffcda3;
 }
 
+.calendar {
+  height: 50%;
+  width: 80%;
+  margin-top: 13%;
+}
+
+.calendar td {
+  width: 14.28%;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 600;
+}
+
+#prev,
+#next {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.calendar button:focus {
+  outline: none;
+}
+
+.calendar__head > tr {
+  height: 50px;
+}
+
+.calendar__head-title {
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 900;
+}
+
+.calendar__body tr > td:first-child {
+  color: red;
+}
+
+.calendar__body tr > td:nth-child(7) {
+  color: blue;
+}
