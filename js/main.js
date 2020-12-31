@@ -9,10 +9,12 @@ const leapYearMonth = [31,29,31,30,31,30,31,31,30,31,30,31];
 const notLeapYearMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
 
 let clickedDate;
+let tdId;
 
 // 그리고 싶은 달의 첫째날
 let firstDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
 
+const VIEW_DAY = "view-day";
 
 function paintCalendar(){
     let months;
@@ -103,14 +105,28 @@ function next(){
     paintCalendar();
 }
 
-function viewDay(event){
-    console.log(this.id);
+function viewDay(){
+    let td;
     
+    if(tdId !== undefined){
+        td = document.getElementById(tdId);
+        td.classList.remove(VIEW_DAY);
+    }
+
+    if(this.id === undefined){
+        tdId = `${new Date().getFullYear()}`+`${new Date().getMonth()+1}`+`${new Date().getDate()<10?'0'+new Date().getDate():new Date().getDate()}`;
+    } else{
+        tdId = this.id;
+    }
+    td = document.getElementById(tdId);
+     
+    td.classList.add(VIEW_DAY);
+
 }
 
 function init(){
     paintCalendar();
-    viewDay(`${new Date().getFullYear()}`+`${new Date().getMonth()+1}`+`${new Date().getDate()<10?'0'+new Date().getDate():new Date().getDate()}`);
+    viewDay();
     prevBtn.addEventListener("click", prev);
     nextBtn.addEventListener("click", next);
     
