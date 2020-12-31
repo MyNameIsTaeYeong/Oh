@@ -47,3 +47,8 @@
 .calendar__body tr > td:nth-child(7) {
   color: blue;
 }
+
+.view-day {
+  background-color: rgba(50, 50, 50, 0.3);
+  border-radius: 50%;
+}

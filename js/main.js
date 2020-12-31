@@ -8,9 +8,13 @@ const nextBtn = document.querySelector("#next");
 const leapYearMonth = [31,29,31,30,31,30,31,31,30,31,30,31];
 const notLeapYearMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
 
+let clickedDate;
+let tdId;
+
 // 그리고 싶은 달의 첫째날
 let firstDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
 
+const VIEW_DAY = "view-day";
 
 function paintCalendar(){
     let months;
@@ -51,6 +55,14 @@ function paintCalendar(){
         calendarBody.appendChild(tr);
         if(day > months[firstDate.getMonth()])
             break;
+    }
+
+    clickedDate = document.querySelectorAll(".week > td");
+    
+    for(let i=0; i<clickedDate.length; i++){
+        if(clickedDate[i].id !== ''){
+            clickedDate[i].addEventListener('click', viewDay);
+        } 
     }
 }
 
@@ -93,10 +105,31 @@ function next(){
     paintCalendar();
 }
 
+function viewDay(){
+    let td;
+    
+    if(tdId !== undefined){
+        td = document.getElementById(tdId);
+        td.classList.remove(VIEW_DAY);
+    }
+
+    if(this.id === undefined){
+        tdId = `${new Date().getFullYear()}`+`${new Date().getMonth()+1}`+`${new Date().getDate()<10?'0'+new Date().getDate():new Date().getDate()}`;
+    } else{
+        tdId = this.id;
+    }
+    td = document.getElementById(tdId);
+     
+    td.classList.add(VIEW_DAY);
+
+}
+
 function init(){
     paintCalendar();
+    viewDay();
     prevBtn.addEventListener("click", prev);
     nextBtn.addEventListener("click", next);
+    
 }
 
 
