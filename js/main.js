@@ -99,6 +99,7 @@ function deleteCalendar(){
 }
 
 function prev(){
+    cleanToDoList();
     deleteCalendar();
 
     if(firstDate.getMonth() === 0){
@@ -112,6 +113,7 @@ function prev(){
 }
 
 function next(){
+    cleanToDoList();
     deleteCalendar();
 
     if(firstDate.getMonth() === 11){
@@ -159,7 +161,11 @@ function paintToDo(text){
     saveToDos();
 }
 
-
+function cleanToDoList(){
+    while(toDoList.hasChildNodes()){
+        toDoList.removeChild(toDoList.lastChild);
+    }
+}
 
 function viewDay(){
     let td;
@@ -185,9 +191,7 @@ function viewDay(){
 
     toDos = [];
     
-    while(toDoList.hasChildNodes()){
-        toDoList.removeChild(toDoList.lastChild);
-    }
+    cleanToDoList();
 
     const loadedToDos = localStorage.getItem(TODOS_LS+tdId);
     
