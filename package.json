@@ -1,0 +1,32 @@
+{
+  "name": "oh",
+  "version": "1.0.0",
+  "description": "### 문제 정의",
+  "scripts": {
+    "start": "nodemon --exec babel-node init.js --delay 2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MyNameIsTaeYeong/Oh.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MyNameIsTaeYeong/Oh/issues"
+  },
+  "homepage": "https://github.com/MyNameIsTaeYeong/Oh#readme",
+  "dependencies": {
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "core-js": "^3.8.2",
+    "express": "^4.17.1",
+    "helmet": "^4.3.1",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
