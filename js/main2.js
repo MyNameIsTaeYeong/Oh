@@ -212,6 +212,7 @@ function handleSubmit(event){
 }
 
 function init(){
+    console.log("hello");
     paintCalendar();
     viewDay();
     toDoForm.addEventListener("submit", handleSubmit);
