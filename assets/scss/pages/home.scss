@@ -1,0 +1,88 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 300vh;
+
+  .calendar {
+    color: white;
+    height: 350px;
+    width: 80%;
+    margin-top: 13%;
+
+    & td {
+      width: 14.28%;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    & button:focus {
+      outline: none;
+    }
+
+    .calendar__head {
+      & > tr {
+        height: 50px;
+      }
+    }
+
+    .calendar__body {
+      & tr > td:first-child {
+        color: red;
+      }
+      & tr > td:nth-child(7) {
+        color: blue;
+      }
+    }
+  }
+
+  .viewer {
+    width: 300px;
+    height: 278px;
+    margin-top: 20px;
+    background-color: #be8d73;
+    border-radius: 15%;
+    box-shadow: 10px 10px 6px rgba(0, 0, 0, 0.16);
+    .js-toDoForm {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      & > input {
+        background-color: #ffcda3;
+        border-top: black;
+        border-right: black;
+        border-left: black;
+      }
+    }
+
+    .js-toDoList {
+      & li {
+        margin-top: 10px;
+      }
+      & button {
+        border: none;
+        background-color: rgba(0, 0, 0, 0.67);
+      }
+    }
+  }
+}
+
+#prev,
+#next {
+  color: white;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.calendar__head-title {
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 900;
+}
+
+.view-day {
+  background-color: rgba(50, 50, 50, 0.4);
+  border-radius: 50%;
+}
