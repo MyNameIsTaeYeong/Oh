@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 300vh;
 
   .calendar {
     color: white;
@@ -35,34 +34,79 @@
       }
     }
   }
+  .viewer--button {
+    position: fixed;
+    bottom: 150px;
+    width: 310px;
+    display: flex;
+    justify-content: space-between;
 
-  .viewer {
+    & button {
+      background: none;
+      border: none;
+      color: rgba(0, 0, 0, 0.6);
+    }
+    & button:focus {
+      outline: none;
+    }
+  }
+  .viewer--window {
     width: 300px;
     height: 278px;
-    margin-top: 20px;
-    background-color: #be8d73;
     border-radius: 15%;
     box-shadow: 10px 10px 6px rgba(0, 0, 0, 0.16);
-    .js-toDoForm {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    overflow: hidden;
 
-      & > input {
-        background-color: #ffcda3;
-        border-top: black;
-        border-right: black;
-        border-left: black;
-      }
-    }
+    .viewer--wrap {
+      width: 900px;
+      height: 278px;
+      overflow: hidden;
+      display: table;
+      transition: transform 0.3s ease-in-out;
 
-    .js-toDoList {
-      & li {
-        margin-top: 10px;
+      .viewer__content--todo,
+      .viewer__content--memo {
+        width: 300px;
+        height: 278px;
+        background-color: #be8d73;
+        overflow-y: auto;
+        float: left;
+
+        .js-toDoForm,
+        .js-memoForm {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-top: 10px;
+
+          & > span {
+            margin-right: 10px;
+          }
+          & > input {
+            background-color: #be8d73;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+          }
+        }
+
+        .js-toDoList,
+        .js-memoList {
+          & li {
+            margin-top: 15px;
+            margin-left: 20px;
+          }
+          & button {
+            border: none;
+            background-color: #be8d73;
+          }
+        }
       }
-      & button {
-        border: none;
-        background-color: rgba(0, 0, 0, 0.67);
+
+      .viewer__content--pattern {
+        width: 300px;
+        height: 278px;
+        background-color: #be8d73;
+        border-radius: 15%;
+        float: left;
       }
     }
   }

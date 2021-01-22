@@ -7,6 +7,10 @@ const toDoInput = toDoForm.querySelector("input");
 
 const prevBtn = document.querySelector("#prev");
 const nextBtn = document.querySelector("#next");
+const prevPageBtn = document.getElementById("js-prevPageBtn");
+const nextPageBtn = document.getElementById("js-nextPageBtn");
+
+const viewerWrap = document.querySelector(".viewer--wrap");
 
 const leapYearMonth = [31,29,31,30,31,30,31,31,30,31,30,31];
 const notLeapYearMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
@@ -145,8 +149,9 @@ function paintToDo(text){
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
     const span = document.createElement("span");
+    delBtn.classList.add("far");
+    delBtn.classList.add("fa-trash-alt");
     const newId = toDos.length + 1;
-    delBtn.innerHTML = "❌";
     delBtn.addEventListener("click", deleteToDo);
     span.innerText = text;
     li.appendChild(delBtn);
@@ -211,14 +216,17 @@ function handleSubmit(event){
     toDoInput.value = '';
 }
 
+const nextPage = () => {
+    viewerWrap.style.transform = "translateX(-300px)";
+}
+
 function init(){
-    
     paintCalendar();
     viewDay();
     toDoForm.addEventListener("submit", handleSubmit);
     prevBtn.addEventListener("click", prev);
     nextBtn.addEventListener("click", next);
-    
+    nextPageBtn.addEventListener("click", nextPage);
 }
 
 if(calendarHead){
