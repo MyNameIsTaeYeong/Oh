@@ -9,6 +9,8 @@ const prevBtn = document.querySelector("#prev");
 const nextBtn = document.querySelector("#next");
 const prevPageBtn = document.getElementById("js-prevPageBtn");
 const nextPageBtn = document.getElementById("js-nextPageBtn");
+const patternList = document.getElementById("js-patternList");
+const patternAddBtn = document.getElementById("pattern--add-Btn");
 
 const viewerWrap = document.querySelector(".viewer--wrap");
 
@@ -30,8 +32,7 @@ const VIEW_DAY = "view-day";
 // 할 일을 저장하는 로컬스토리지의 이름. 이 뒤에는 td의 아이디가 붙는다. ex) toDos20200101 (2020년 1월 1일의 todos)
 const TODOS_LS = "toDos";
 
-// 클릭이 되어있는지 저장하는 변수.
-let clicked = false;
+let distance = 0;
 
 let toDos = [];
 
@@ -217,7 +218,37 @@ function handleSubmit(event){
 }
 
 const nextPage = () => {
-    viewerWrap.style.transform = "translateX(-300px)";
+    distance += 300;
+    viewerWrap.style.transform = `translateX(-${distance}px)`;
+    if(distance === 600){
+        nextPageBtn.style.visibility = 'hidden';
+    }
+    prevPageBtn.style.visibility = 'visible';
+}
+
+const prevPage = () => {
+    distance -= 300;
+    viewerWrap.style.transform = `translateX(-${distance}px)`;
+    if(distance === 0){
+        prevPageBtn.style.visibility = 'hidden';
+    }
+    nextPageBtn.style.visibility = 'visible';
+}
+
+const addPattern = () => {
+    const input = prompt("패턴이름");
+    alert(input);
+    if(input !== null){
+        const li = document.createElement("li");
+        const btn = document.createElement("button");
+        li.appendChild(btn);
+        btn.value = input;
+        btn.innerText = input;
+        patternList.appendChild(li);
+        btn.classList = "pattern-button";
+        
+    }
+
 }
 
 function init(){
@@ -227,10 +258,12 @@ function init(){
     prevBtn.addEventListener("click", prev);
     nextBtn.addEventListener("click", next);
     nextPageBtn.addEventListener("click", nextPage);
+    prevPageBtn.addEventListener("click", prevPage);
+    patternAddBtn.addEventListener("click", addPattern);
+    prevPageBtn.style.visibility = 'hidden';
 }
 
 if(calendarHead){
-    
     init();
 }
 
