@@ -22,10 +22,10 @@ block content
                     td 금
                     td 토
         
-        .viewer--button
-            button.fas.fa-chevron-left.fa-2x#js-prevPageBtn
-            button.fas.fa-chevron-right.fa-2x#js-nextPageBtn
+        
         .viewer--window
+            button.fas.fa-chevron-left.fa-2x#js-prevPageBtn.viewer--button
+            button.fas.fa-chevron-right.fa-2x#js-nextPageBtn.viewer--button
             .viewer--wrap
                 .viewer__content--todo
                     form.js-toDoForm
@@ -38,4 +38,6 @@ block content
                         input(type="text")
                     ul.js-memoList
                 .viewer__content--pattern
-                    span 패턴
+                    p.pattern--title 패턴
+                    ul#js-patternList
+                    p.far.fa-plus-square.fa-2x#pattern--add-Btn

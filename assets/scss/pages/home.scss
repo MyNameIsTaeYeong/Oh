@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  height: 100vh;
 
   .calendar {
     color: white;
@@ -34,41 +36,48 @@
       }
     }
   }
-  .viewer--button {
-    position: fixed;
-    bottom: 150px;
-    width: 310px;
-    display: flex;
-    justify-content: space-between;
 
-    & button {
-      background: none;
-      border: none;
-      color: rgba(0, 0, 0, 0.6);
-    }
-    & button:focus {
-      outline: none;
-    }
-  }
   .viewer--window {
     width: 300px;
     height: 278px;
     border-radius: 15%;
-    box-shadow: 10px 10px 6px rgba(0, 0, 0, 0.16);
     overflow: hidden;
+    background-color: #be8d73;
+    position: absolute;
+    bottom: 30px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+      rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+    .viewer--button {
+      position: absolute;
+      bottom: 124px;
+      z-index: 1;
+      background: none;
+      border: none;
+      color: rgba(0, 0, 0, 0.6);
+      &:focus {
+        outline: none;
+      }
+    }
+    #js-prevPageBtn {
+      left: 0px;
+    }
+    #js-nextPageBtn {
+      right: 0px;
+    }
 
     .viewer--wrap {
       width: 900px;
       height: 278px;
       overflow: hidden;
       display: table;
-      transition: transform 0.3s ease-in-out;
+      transition: transform 0.2s ease-in-out;
 
       .viewer__content--todo,
       .viewer__content--memo {
         width: 300px;
         height: 278px;
-        background-color: #be8d73;
         overflow-y: auto;
         float: left;
 
@@ -81,6 +90,7 @@
 
           & > span {
             margin-right: 10px;
+            font-size: 30px;
           }
           & > input {
             background-color: #be8d73;
@@ -93,6 +103,7 @@
           & li {
             margin-top: 15px;
             margin-left: 20px;
+            font-size: 25px;
           }
           & button {
             border: none;
@@ -104,14 +115,37 @@
       .viewer__content--pattern {
         width: 300px;
         height: 278px;
-        background-color: #be8d73;
-        border-radius: 15%;
+        overflow-y: auto;
         float: left;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .pattern--title {
+          margin-top: 15px;
+          margin-bottom: 10px;
+          font-size: 30px;
+        }
+
+        .pattern-button {
+          width: 140px;
+          height: 70px;
+          margin-bottom: 20px;
+          background-color: rgba(218, 126, 40, 0.514);
+          border-radius: 20px;
+          border: none;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+            rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+        }
       }
     }
   }
 }
-
+#pattern--add-Btn {
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+}
 #prev,
 #next {
   color: white;
