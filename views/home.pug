@@ -27,11 +27,6 @@ block content
             button.fas.fa-chevron-left.fa-2x#js-prevPageBtn.viewer--button
             button.fas.fa-chevron-right.fa-2x#js-nextPageBtn.viewer--button
             .viewer--wrap
-                .viewer__content--todo
-                    form.js-toDoForm
-                        span 할 일 : 
-                        input(type="text")
-                    ul.js-toDoList
                 .viewer__content--memo
                     form.js-memoForm
                         span 메모 :
@@ -41,3 +36,8 @@ block content
                     p.pattern--title 패턴
                     ul#js-patternList
                     p.far.fa-plus-square.fa-2x#pattern--add-Btn
+                .viewer__content--todo
+                    form.js-toDoForm
+                        span 기억할 것 : 
+                        input(type="text")
+                    ul.js-toDoList

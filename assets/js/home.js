@@ -3,7 +3,7 @@ const calendarHeadTitle = document.querySelector(".calendar__head-title");
 const calendarBody = document.querySelector(".calendar__body");
 const toDoForm = document.querySelector(".js-toDoForm");
 const toDoList = document.querySelector(".js-toDoList");
-const toDoInput = toDoForm.querySelector("input");
+
 
 const prevBtn = document.querySelector("#prev");
 const nextBtn = document.querySelector("#next");
@@ -211,6 +211,7 @@ function viewDay(){
 }
 
 function handleSubmit(event){
+    const toDoInput = toDoForm.querySelector("input");
     event.preventDefault();
     const currentValue = toDoInput.value;
     paintToDo(currentValue);

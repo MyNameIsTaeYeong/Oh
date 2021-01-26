@@ -7,10 +7,10 @@ const UserSchema = new mongoose.Schema({
     googleId: Number,
     naverId: Number,
     kakaoId: Number,
-    patterns:{
+    patterns:[{
         type: mongoose.Schema.Types.ObjectId,
         ref:"Pattern"
-    },
+    }],
     // 년 월 일 
     // 2021년 1월 21일의 첫번째 메모 => memos[0][0][20][0]
     // 2021년 1월 21일의 두번째 메모 => memos[0][0][20][1]
