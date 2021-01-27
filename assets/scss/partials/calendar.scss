@@ -1,0 +1,50 @@
+.calendar {
+  color: white;
+  height: 350px;
+  width: 80%;
+  margin-top: 13%;
+
+  & td {
+    width: 14.28%;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  & button:focus {
+    outline: none;
+  }
+
+  .calendar__head {
+    & > tr {
+      height: 50px;
+    }
+  }
+
+  .calendar__body {
+    & tr > td:first-child {
+      color: red;
+    }
+    & tr > td:nth-child(7) {
+      color: blue;
+    }
+  }
+}
+
+#prev,
+#next {
+  color: white;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.calendar__head-title {
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 900;
+}
+
+.view-day {
+  background-color: rgba(50, 50, 50, 0.4);
+  border-radius: 50%;
+}
