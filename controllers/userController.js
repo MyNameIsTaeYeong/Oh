@@ -33,5 +33,6 @@ export const googleLoginCallback = async (accessToken, refreshToken, profile, cb
 };
 
 export const postGoogleLogin = (req, res) => {
+    console.log(req.user);
     res.redirect(routes.home);
 }
