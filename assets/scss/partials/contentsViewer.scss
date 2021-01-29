@@ -42,8 +42,8 @@
       overflow-y: auto;
       float: left;
 
-      .js-toDoForm,
-      .js-memoForm {
+      #js-toDoForm,
+      #js-memoForm {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -59,8 +59,8 @@
         }
       }
 
-      .js-toDoList,
-      .js-memoList {
+      #js-toDoList,
+      #js-memoList {
         & li {
           margin-top: 15px;
           margin-left: 20px;

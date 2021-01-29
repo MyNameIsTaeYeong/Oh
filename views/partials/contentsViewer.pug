@@ -3,16 +3,21 @@
             button.fas.fa-chevron-right.fa-2x#js-nextPageBtn.viewer--button
             .viewer--wrap
                 .viewer__content--memo
-                    form.js-memoForm
+                    form#js-memoForm
                         span 메모 :
                         input(type="text")
-                    ul.js-memoList
+                    ul#js-memoList
+                        //- each memo in user.memos
+                        //-     li
+                        //-         button.far.fa-trash-alt
+                        //-         span=memo.content
+                                
                 .viewer__content--pattern
                     p.pattern--title 패턴
                     ul#js-patternList
                     p.far.fa-plus-square.fa-2x#pattern--add-Btn
                 .viewer__content--todo
-                    form.js-toDoForm
+                    form#js-toDoForm
                         span 기억할 것 : 
                         input(type="text")
-                    ul.js-toDoList
+                    ul#js-toDoList

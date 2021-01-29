@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import routes from "./routes";
 import userRouter from "./routers/userRouter";
+import apiRouter from "./routers/apiRouter";
 import { localsMiddleware } from "./middlewares";
 import passport from "passport";
 import session from "express-session";
@@ -47,6 +48,7 @@ app.use(passport.session());
 
 app.use(localsMiddleware);
 
+app.use(routes.api, apiRouter);
 app.use(routes.home, userRouter);
 
 export default app;
