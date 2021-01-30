@@ -2,6 +2,7 @@ import routes from "../routes";
 import passport from "passport";
 import User from "../models/User";
 import Memo from "../models/Memo";
+import mongoose from "mongoose";
 
 export const home = (req, res) => {
     res.render("home");
@@ -23,20 +24,18 @@ export const googleLoginCallback = async (accessToken, refreshToken, profile, cb
         }
 
         const welcomeMemo = await Memo.create({
-            content: "Welcome!",
+            content: ["Welcome!"],
             createdBy: "imtaebari"
         });
 
-        const welcomeArray = [];
-        welcomeArray.push(welcomeMemo);
-
+        
         const newUser = await User.create({
             name,
             email,
             avartarUrl : picture,
             googleId : sub,
-            memos: {
-                "oh": welcomeArray
+            memosMap: {
+                "oh": welcomeMemo
             }
         });
         return cb(null, newUser);
@@ -46,16 +45,24 @@ export const googleLoginCallback = async (accessToken, refreshToken, profile, cb
 };
 
 export const postGoogleLogin = (req, res) => {
-    console.log(req.user);
-    res.redirect(`/${req.user._id}`);
+    const dateObj = new Date();
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth() < 9 ? '0' + (dateObj.getMonth()+1) : dateObj.getMonth()+1;
+    const date = dateObj.getDate() < 9 ? '0' + dateObj.getDate() : dateObj.getDate();
+    res.redirect(`/user/${req.user._id}/${year}${month}${date}`);
 }
 
+
+// toDo : 클릭한 날짜를 키값으로 가지는 메모들 불러오기
 export const getHome = async (req, res) => {
-    const { params: { id } } = req;
-    
+    const { params:{ id, day } } = req;
+
     try {
-        //const user = await User.findById(id).populate("memos");
+        const user = await User.findById(id);
+        const memo = await Memo.findById(user.memosMap.get("20210129")._id);
         
+        console.log(memo);
+     
         res.render("home");
     } catch (error) {
         console.log(error);

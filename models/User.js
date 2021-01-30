@@ -1,5 +1,12 @@
 import mongoose from "mongoose";
 
+const memoOfTheDay = mongoose.Schema({
+    memos: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"Memo" 
+    }
+})
+
 const UserSchema = new mongoose.Schema({
     name: String,
     email: String,
@@ -11,15 +18,10 @@ const UserSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref:"Pattern"
     }],
-    // 년 월 일 
-    // 2021년 1월 21일의 첫번째 메모 => memos[0][0][20][0]
-    // 2021년 1월 21일의 두번째 메모 => memos[0][0][20][1]
-    memos:{
+   
+    memosMap:{
         type: Map,
-        of: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref:"Memo" 
-        }]
+        of: memoOfTheDay
     },
     toDos:[{
         type: mongoose.Schema.Types.ObjectId,
