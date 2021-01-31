@@ -1,3 +1,5 @@
+include ../mixins/textBlock
+
 .viewer--window
             button.fas.fa-chevron-left.fa-2x#js-prevPageBtn.viewer--button
             button.fas.fa-chevron-right.fa-2x#js-nextPageBtn.viewer--button
@@ -7,10 +9,14 @@
                         span 메모 :
                         input(type="text")
                     ul#js-memoList
-                        //- each memo in user.memos
-                        //-     li
-                        //-         button.far.fa-trash-alt
-                        //-         span=memo.content
+                        each content in contents
+                                +textBlock({
+                                    content
+                                })
+                        
+                            
+                                    
+                                
                                 
                 .viewer__content--pattern
                     p.pattern--title 패턴

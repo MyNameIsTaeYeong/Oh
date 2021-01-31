@@ -1,4 +1,5 @@
 import axios from "axios";
+import routes from "../../routes";
 
 const memo = document.querySelector(".viewer__content--memo");
 const memoForm = document.getElementById("js-memoForm");
@@ -10,7 +11,6 @@ const addMemo = (memoContent) => {
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
     const span = document.createElement("span");
-
     delBtn.classList.add("far");
     delBtn.classList.add("fa-trash-alt");
     span.innerText = memoContent;
@@ -30,13 +30,13 @@ const sendMemo = async (memoContent) => {
     memoDay = memoDay.substring(0, memoDay.length - 1);
     
     const response = await axios({
-        url: `/api/${userId}/memo/${memoDay}`,
+        url: `/api/${userId}/addmemo/${memoDay}`,
         method: "POST",
         data:{
             memoContent
         }
     });
- 
+  
     if(response.status === 200){
         addMemo(memoContent);
     }
@@ -56,4 +56,5 @@ const init = () => {
 
 if(memo){
     init();
+    console.log(routes.day);
 }

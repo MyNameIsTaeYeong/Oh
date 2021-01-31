@@ -45,25 +45,34 @@ export const googleLoginCallback = async (accessToken, refreshToken, profile, cb
 };
 
 export const postGoogleLogin = (req, res) => {
-    const dateObj = new Date();
-    const year = dateObj.getFullYear();
-    const month = dateObj.getMonth() < 9 ? '0' + (dateObj.getMonth()+1) : dateObj.getMonth()+1;
-    const date = dateObj.getDate() < 9 ? '0' + dateObj.getDate() : dateObj.getDate();
-    res.redirect(`/user/${req.user._id}/${year}${month}${date}`);
+    res.redirect(`/user/${req.user._id}`);
 }
 
 
 // toDo : 클릭한 날짜를 키값으로 가지는 메모들 불러오기
 export const getHome = async (req, res) => {
-    const { params:{ id, day } } = req;
+    const { params:{ id } } = req;
+
+    const dateObj = new Date();
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth() < 9 ? '0' + (dateObj.getMonth()+1) : dateObj.getMonth()+1;
+    const date = dateObj.getDate() < 9 ? '0' + dateObj.getDate() : dateObj.getDate();
+    
+    const day = `${year}${month}${date}`;
 
     try {
         const user = await User.findById(id);
-        const memo = await Memo.findById(user.memosMap.get("20210129")._id);
+        const memoOfTheDay = user.memosMap.get(day)
         
-        console.log(memo);
-     
-        res.render("home");
+        if(memoOfTheDay !== undefined){
+            const memos = await Memo.findById(memoOfTheDay._id);
+            const contents = memos.content;
+            res.render("home", {contents});
+        } else {
+            res.render("home", {contents:[]});
+        }
+        
+        
     } catch (error) {
         console.log(error);
     }

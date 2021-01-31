@@ -5,40 +5,60 @@ import Memo from "../models/Memo";
 export const postAddMemo = async (req, res) => {
     const {
         body: { memoContent },
-        params: { id },
+        params: { id, day },
         user: { email }
     } = req;
 
     try {
         const user = await User.findById(id);
-
-       
-        
-        let memos = user.memosMap.get("20210129");
-
-       
-        
-        if(memos === undefined){
+        const memoOfTheDay = user.memosMap.get(day);
+ 
+        if(memoOfTheDay === undefined){
             const newMemo = await Memo.create({
                 content: [memoContent],
                 createdBy: email
             });
-            user.memosMap.set("20210129", newMemo); 
+            user.memosMap.set(day, newMemo); 
         } else {
-            const memo = await Memo.findById(memos._id);
-            memo.content.push(memoContent);
-            memo.save();
-
-            console.log(memo);
+            const memos = await Memo.findById(memoOfTheDay._id);
+            memos.content.push(memoContent);
+            memos.save();
         }
         
         user.save();
-
+        res.send({user});
     } catch (error) {
-        //res.status(400);
+        res.status(400);
         console.log(error);
     }finally{
+        console.log("END!!!");
         res.end();
     }
+    
+}
+
+export const postViewMemo = async (req, res) => {
+    const {
+        params: {id, day}
+    } = req;
+
+    try {
+        const user = await User.findById(id);
+        const memoOfTheDay = user.memosMap.get(day);
+
+        if(memoOfTheDay !== undefined){
+            const memos = await Memo.findById(memoOfTheDay._id);
+            res.send({memos});
+        } else {
+            res.send({memos: null});
+        }
+
+    } catch (error) {
+        res.status(400);
+        console.log(error);
+    } finally{
+        res.end();
+    }
+
     
 }

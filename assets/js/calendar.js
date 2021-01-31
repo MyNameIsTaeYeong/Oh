@@ -1,3 +1,8 @@
+
+import axios from "axios";
+import routes from "../../routes";
+
+
 const calendar = document.querySelector(".calendar");
 const calendarHeadTitle = document.querySelector(".calendar__head-title");
 const calendarBody = document.querySelector(".calendar__body");
@@ -120,6 +125,50 @@ function next(){
     paintCalendar();
 }
 
+
+const deleteMemo = () => {
+    const memoList = document.getElementById("js-memoList");
+    while(memoList.lastElementChild){
+        memoList.removeChild(memoList.lastElementChild);
+    }
+}
+
+const paintMemo = (memos) => {
+    const memoList = document.getElementById("js-memoList");
+    for(let i=0; i<memos.content.length; i++){
+        const li = document.createElement("li");
+        const delBtn = document.createElement("button");
+        const span = document.createElement("span");
+        delBtn.classList.add("far");
+        delBtn.classList.add("fa-trash-alt");
+        span.innerText = memos.content[i];
+        li.appendChild(delBtn);
+        li.appendChild(span);
+        memoList.appendChild(li);
+    }
+}
+
+const getMemosFromDB = async () => {
+    const address = window.location.href;
+    const splitedAddress = address.split('/');
+
+    // 유저 id 뒤에 '#'문자 제거 
+    let userId = splitedAddress[splitedAddress.length - 2];
+
+    const response = await axios({
+        url: `/api/${userId}/viewmemo/${tdId}`,
+        method: "POST"
+    });
+    
+    if(response.status === 200){
+        const { data: { memos } } = response
+        if(memos !== null){
+            paintMemo(memos);
+        }
+    }
+    
+}
+
 function viewDay(){
     let td;
     
@@ -130,7 +179,7 @@ function viewDay(){
     }
 
     // 처음 앱을 키면 오늘의 날짜를 표시하기 위함.
-    if(this.id === undefined){
+    if(this === undefined){
         tdId = `${new Date().getFullYear()}`+`${firstDate.getMonth() < 9 ? '0'+(firstDate.getMonth()+1) : firstDate.getMonth()+1}`+`${new Date().getDate()<10?'0'+new Date().getDate():new Date().getDate()}`;
     } 
     // 클릭된 td의 아이디를 얻는 부분.
@@ -142,28 +191,25 @@ function viewDay(){
     td = document.getElementById(tdId);
     td.classList.add(VIEW_DAY);
 
-    // toDos = [];
-    
-    // cleanToDoList();
 
-    // const loadedToDos = localStorage.getItem(TODOS_LS+tdId);
+    if(this !== undefined){
+        // 이전 메모 지우기
+        deleteMemo();
     
-    // if(loadedToDos !== null){
-    //     // String을 -> Object로 변환
-    //     const parsedToDos = JSON.parse(loadedToDos);
-    //     parsedToDos.forEach(function(toDo){
-    //         paintToDo(toDo.text);
-    //     });
-    // }
+        // 클릭된 날짜의 메모 디비에서 얻어오기(비동기방식)
+        getMemosFromDB();
+    }
+    
 }
 
 function init(){
     paintCalendar();
     viewDay();
-    //toDoForm.addEventListener("submit", handleSubmit);
     prevBtn.addEventListener("click", prev);
     nextBtn.addEventListener("click", next);
     
+    routes.day = "202020";
+    console.log(routes.day);
 }
 
 
