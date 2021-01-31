@@ -6,12 +6,16 @@ const GOOGLE_CALLBACK = "/auth/google/callback";
 
 // User
 const USER = "/user";
-const DAY = "/:id/:day";
+const USER_ID = "/:id";
 
 
 // api
 const API = "/api";
-const ADD_MEMO = "/:id/memo/:day"
+const ADD_MEMO = "/:id/addmemo"
+const VIEW_MEMO = "/:id/viewmemo"
+
+// day
+let DAY = "";
 
 const routes = {
     home: HOME,
@@ -21,7 +25,9 @@ const routes = {
     googleCallback: GOOGLE_CALLBACK,
     api: API,
     addMemo: ADD_MEMO,
-    day: DAY
+    userId: USER_ID,
+    viewMemo: VIEW_MEMO,
+    day:DAY
 };
 
 export default routes;
