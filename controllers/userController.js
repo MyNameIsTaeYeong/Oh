@@ -58,11 +58,11 @@ export const getHome = async (req, res) => {
     const month = dateObj.getMonth() < 9 ? '0' + (dateObj.getMonth()+1) : dateObj.getMonth()+1;
     const date = dateObj.getDate() < 9 ? '0' + dateObj.getDate() : dateObj.getDate();
     
-    const day = `${year}${month}${date}`;
+    routes.day = `${year}${month}${date}`;
 
     try {
         const user = await User.findById(id);
-        const memoOfTheDay = user.memosMap.get(day)
+        const memoOfTheDay = user.memosMap.get(routes.day)
         
         if(memoOfTheDay !== undefined){
             const memos = await Memo.findById(memoOfTheDay._id);

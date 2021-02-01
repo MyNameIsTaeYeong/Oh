@@ -1,6 +1,7 @@
 import User from "../models/User";
 import Memo from "../models/Memo";
 
+
 // toDo : 클릭한 날짜를 키값으로 메모 등록하기.
 export const postAddMemo = async (req, res) => {
     const {
@@ -45,7 +46,7 @@ export const postViewMemo = async (req, res) => {
     try {
         const user = await User.findById(id);
         const memoOfTheDay = user.memosMap.get(day);
-
+       
         if(memoOfTheDay !== undefined){
             const memos = await Memo.findById(memoOfTheDay._id);
             res.send({memos});

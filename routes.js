@@ -11,8 +11,8 @@ const USER_ID = "/:id";
 
 // api
 const API = "/api";
-const ADD_MEMO = "/:id/addmemo"
-const VIEW_MEMO = "/:id/viewmemo"
+const ADD_MEMO = "/:id/addmemo/:day"
+const VIEW_MEMO = "/:id/viewmemo/:day"
 
 // day
 let DAY = "";
