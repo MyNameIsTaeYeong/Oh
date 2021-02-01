@@ -25,12 +25,6 @@ let firstDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
 // 클릭된 요일을 표시하는 클래스
 const VIEW_DAY = "view-day";
 
-// 할 일을 저장하는 로컬스토리지의 이름. 이 뒤에는 td의 아이디가 붙는다. ex) toDos20200101 (2020년 1월 1일의 todos)
-const TODOS_LS = "toDos";
-
-
-let toDos = [];
-
 function paintCalendar(){
     let months;
     let day = 1;
@@ -99,7 +93,6 @@ function deleteCalendar(){
 }
 
 function prev(){
-    //cleanToDoList();
     deleteCalendar();
 
     if(firstDate.getMonth() === 0){
@@ -113,7 +106,6 @@ function prev(){
 }
 
 function next(){
-    //cleanToDoList();
     deleteCalendar();
 
     if(firstDate.getMonth() === 11){
@@ -153,13 +145,14 @@ const getMemosFromDB = async () => {
     const splitedAddress = address.split('/');
 
     // 유저 id 뒤에 '#'문자 제거 
-    let userId = splitedAddress[splitedAddress.length - 2];
+    let userId = splitedAddress[splitedAddress.length - 1];
+    userId = userId.substring(0, userId.length - 1);
 
     const response = await axios({
-        url: `/api/${userId}/viewmemo/${tdId}`,
+        url: `/api/${userId}/viewmemo/${routes.day}`,
         method: "POST"
     });
-    
+
     if(response.status === 200){
         const { data: { memos } } = response
         if(memos !== null){
@@ -191,8 +184,10 @@ function viewDay(){
     td = document.getElementById(tdId);
     td.classList.add(VIEW_DAY);
 
-
+    
     if(this !== undefined){
+        routes.day = tdId;
+    
         // 이전 메모 지우기
         deleteMemo();
     
@@ -207,9 +202,6 @@ function init(){
     viewDay();
     prevBtn.addEventListener("click", prev);
     nextBtn.addEventListener("click", next);
-    
-    routes.day = "202020";
-    console.log(routes.day);
 }
 
 

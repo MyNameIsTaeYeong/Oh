@@ -25,12 +25,11 @@ const sendMemo = async (memoContent) => {
     const splitedAddress = address.split('/');
 
     // 유저 id 뒤에 '#'문자 제거 
-    let userId = splitedAddress[splitedAddress.length - 2];
-    let memoDay = splitedAddress[splitedAddress.length - 1];
-    memoDay = memoDay.substring(0, memoDay.length - 1);
-    
+    let userId = splitedAddress[splitedAddress.length - 1];
+    userId = userId.substring(0, userId.length - 1);
+
     const response = await axios({
-        url: `/api/${userId}/addmemo/${memoDay}`,
+        url: `/api/${userId}/addmemo/${routes.day}`,
         method: "POST",
         data:{
             memoContent
