@@ -1,6 +1,6 @@
 
-import axios from "axios";
 import routes from "../../routes";
+import { eraseMemo, getMemosFromDB } from "./memo";
 
 
 const calendar = document.querySelector(".calendar");
@@ -118,50 +118,6 @@ function next(){
 }
 
 
-const deleteMemo = () => {
-    const memoList = document.getElementById("js-memoList");
-    while(memoList.lastElementChild){
-        memoList.removeChild(memoList.lastElementChild);
-    }
-}
-
-const paintMemo = (memos) => {
-    const memoList = document.getElementById("js-memoList");
-    for(let i=0; i<memos.content.length; i++){
-        const li = document.createElement("li");
-        const delBtn = document.createElement("button");
-        const span = document.createElement("span");
-        delBtn.classList.add("far");
-        delBtn.classList.add("fa-trash-alt");
-        span.innerText = memos.content[i];
-        li.appendChild(delBtn);
-        li.appendChild(span);
-        memoList.appendChild(li);
-    }
-}
-
-const getMemosFromDB = async () => {
-    const address = window.location.href;
-    const splitedAddress = address.split('/');
-
-    // 유저 id 뒤에 '#'문자 제거 
-    let userId = splitedAddress[splitedAddress.length - 1];
-    userId = userId.substring(0, userId.length - 1);
-
-    const response = await axios({
-        url: `/api/${userId}/viewmemo/${routes.day}`,
-        method: "POST"
-    });
-
-    if(response.status === 200){
-        const { data: { memos } } = response
-        if(memos !== null){
-            paintMemo(memos);
-        }
-    }
-    
-}
-
 function viewDay(){
     let td;
     
@@ -189,7 +145,7 @@ function viewDay(){
         routes.day = tdId;
     
         // 이전 메모 지우기
-        deleteMemo();
+        eraseMemo();
     
         // 클릭된 날짜의 메모 디비에서 얻어오기(비동기방식)
         getMemosFromDB();
