@@ -2,7 +2,6 @@ import routes from "../routes";
 import passport from "passport";
 import User from "../models/User";
 import Memo from "../models/Memo";
-import mongoose from "mongoose";
 
 export const home = (req, res) => {
     res.render("home");
@@ -52,13 +51,6 @@ export const postGoogleLogin = (req, res) => {
 // toDo : 클릭한 날짜를 키값으로 가지는 메모들 불러오기
 export const getHome = async (req, res) => {
     const { params:{ id } } = req;
-
-    const dateObj = new Date();
-    const year = dateObj.getFullYear();
-    const month = dateObj.getMonth() < 9 ? '0' + (dateObj.getMonth()+1) : dateObj.getMonth()+1;
-    const date = dateObj.getDate() < 9 ? '0' + dateObj.getDate() : dateObj.getDate();
-    
-    routes.day = `${year}${month}${date}`;
 
     try {
         const user = await User.findById(id);

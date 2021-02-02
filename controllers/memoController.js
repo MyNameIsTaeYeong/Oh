@@ -20,14 +20,16 @@ export const postAddMemo = async (req, res) => {
                 createdBy: email
             });
             user.memosMap.set(day, newMemo); 
+            res.send({btnId:0});
         } else {
             const memos = await Memo.findById(memoOfTheDay._id);
             memos.content.push(memoContent);
             memos.save();
+            res.send({btnId:memos.content.length-1});
         }
         
         user.save();
-        res.send({user});
+        //res.send({user});
     } catch (error) {
         res.status(400);
         console.log(error);
@@ -62,4 +64,28 @@ export const postViewMemo = async (req, res) => {
     }
 
     
+}
+
+export const postDeleteMemo = async (req, res) => {
+    const {
+        params: {id, day, idx}
+    } = req;
+
+    console.log(id, day, idx);
+    try {
+        const user = await User.findById(id);
+        const memoOfTheDay = user.memosMap.get(day);
+        const memos = await Memo.findById(memoOfTheDay._id);
+       
+        memos.content.splice(idx, 1);
+        memos.save();
+
+        res.send({memos});
+
+    } catch (error) {
+        res.status(400);
+        console.log(error);
+    } finally {
+        res.end();
+    }
 }

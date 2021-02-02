@@ -9,9 +9,10 @@ include ../mixins/textBlock
                         span 메모 :
                         input(type="text")
                     ul#js-memoList
-                        each content in contents
+                        each content, index in contents
                                 +textBlock({
-                                    content
+                                    content,
+                                    index
                                 })                  
                 .viewer__content--pattern
                     p.pattern--title 패턴
