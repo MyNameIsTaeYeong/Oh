@@ -88,7 +88,7 @@
         font-size: 30px;
       }
 
-      .pattern-button {
+      .pattern-card {
         width: 140px;
         height: 70px;
         margin-bottom: 20px;
@@ -97,6 +97,26 @@
         border: none;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
           rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+
+        & p {
+          height: 50%;
+          font-size: xx-large;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        & div {
+          height: 50%;
+          display: flex;
+          justify-content: space-evenly;
+        }
+
+        & button {
+          background: none;
+          border: none;
+          font-size: x-large;
+        }
       }
     }
   }
