@@ -59,15 +59,16 @@ export const getHome = async (req, res) => {
     const today = `${year}${month}${date}`;
 
     try {
-        const user = await User.findById(id);
+        const user = await User.findById(id).populate("patterns");
         const memoOfTheDay = user.memosMap.get(today);
-        
+        const patterns = user.patterns;
+
         if(memoOfTheDay !== undefined){
             const memos = await Memo.findById(memoOfTheDay._id);
             const contents = memos.content;
-            res.render("home", {contents});
+            res.render("home", {contents, patterns});
         } else {
-            res.render("home", {contents:[]});
+            res.render("home", {contents:[], patterns});
         }
         
         
