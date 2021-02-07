@@ -14,14 +14,7 @@ const API = "/api";
 const ADD_MEMO = "/:id/addmemo/:day"
 const VIEW_MEMO = "/:id/viewmemo/:day"
 const DELETE_MEMO = "/:id/deletememo/:day/:idx";
-
-// day
-
-const dateObj = new Date();
-const year = dateObj.getFullYear();
-const month = dateObj.getMonth() < 9 ? '0' + (dateObj.getMonth()+1) : dateObj.getMonth()+1;
-const date = dateObj.getDate() < 9 ? '0' + dateObj.getDate() : dateObj.getDate();
-let DAY = `${year}${month}${date}`;
+const ADD_PATTERN = "/:id/createpattern";
 
 const routes = {
     home: HOME,
@@ -33,8 +26,8 @@ const routes = {
     addMemo: ADD_MEMO,
     userId: USER_ID,
     viewMemo: VIEW_MEMO,
-    day:DAY,
-    deleteMemo: DELETE_MEMO
+    deleteMemo: DELETE_MEMO,
+    addPattern: ADD_PATTERN
 };
 
 export default routes;

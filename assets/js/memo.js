@@ -1,13 +1,12 @@
 import axios from "axios";
-import routes from "../../routes";
+import globals from "./globals";
 
 const memo = document.querySelector(".viewer__content--memo");
 const memoForm = document.getElementById("js-memoForm");
-let userId;
 
 export const deleteMemo = async (event) => {
     const response = await axios({
-        url: `/api/${userId}/deletememo/${routes.day}/${event.target.id}`,
+        url: `/api/${globals.userId}/deletememo/${globals.day}/${event.target.id}`,
         method: "POST"
     });
 
@@ -47,9 +46,8 @@ const addMemo = (memoContent, btnId) => {
 }
 
 const sendMemo = async (memoContent) => {
-    
     const response = await axios({
-        url: `/api/${userId}/addmemo/${routes.day}`,
+        url: `/api/${globals.userId}/addmemo/${globals.day}`,
         method: "POST",
         data:{
             memoContent
@@ -81,7 +79,7 @@ const paintMemo = (memos) => {
 
 export const getMemosFromDB = async () => {
     const response = await axios({
-        url: `/api/${userId}/viewmemo/${routes.day}`,
+        url: `/api/${globals.userId}/viewmemo/${globals.day}`,
         method: "POST"
     });
 
@@ -103,13 +101,6 @@ const handleSubmit = (event) => {
 }
 
 const init = () => {
-    const address = window.location.href;
-    const splitedAddress = address.split('/');
-    userId = splitedAddress[splitedAddress.length - 1];
-    
-    // 유저 id 뒤에 '#'문자 제거 
-    userId = userId.substring(0, userId.length - 1);
-
     memoForm.addEventListener("submit", handleSubmit);
     
 }
