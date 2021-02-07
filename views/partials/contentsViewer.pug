@@ -1,4 +1,5 @@
 include ../mixins/textBlock
+include ../mixins/patternBlock
 
 .viewer--window
             button.fas.fa-chevron-left.fa-2x#js-prevPageBtn.viewer--button
@@ -17,6 +18,10 @@ include ../mixins/textBlock
                 .viewer__content--pattern
                     p.pattern--title 패턴
                     ul#js-patternList
+                        each pattern in patterns
+                                +patternBlock({
+                                    name:pattern.name
+                                })
                     p.far.fa-plus-square.fa-2x#pattern--add-Btn
                 .viewer__content--todo
                     form#js-toDoForm
