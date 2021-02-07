@@ -1,5 +1,4 @@
-
-import routes from "../../routes";
+import globals from "./globals";
 import { eraseMemo, getMemosFromDB } from "./memo";
 
 
@@ -142,7 +141,7 @@ function viewDay(){
 
     
     if(this !== undefined){
-        routes.day = tdId;
+        globals.day = tdId;
     
         // 이전 메모 지우기
         eraseMemo();

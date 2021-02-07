@@ -1,10 +1,23 @@
+import axios from "axios";
+import globals from "./globals";
+
 const patternList = document.getElementById("js-patternList");
 const patternAddBtn = document.getElementById("pattern--add-Btn");
 
-export const addPattern = () => {
-    const input = prompt("패턴이름");
-    alert(input);
-    if(input !== null){
+/*
+    패턴 삭제시 3단계 수행
+    1. 날짜별 패턴맵에서 해당패턴 인덱스 지우기
+    2. 유저가 가지고 있는 패턴에서 해당패턴 인덱스 지우기
+    3. 유저가 가지고 있는 패턴들의 relatedPattern요소에서 해당패턴 인덱스 지우기
+*/
+
+
+// DB에 패턴 값 추가하기
+
+
+
+// Fake UI
+export const addPattern = (patternName) => {
         const li = document.createElement("li");
         const patternCard = document.createElement("div");
         const patternBtnWrap = document.createElement("div");
@@ -25,7 +38,7 @@ export const addPattern = () => {
         patternBtnWrap.appendChild(averageBtn);
         patternBtnWrap.appendChild(badBtn);
 
-        p.innerText = input;
+        p.innerText = patternName;
         patternCard.appendChild(p);
         patternCard.appendChild(patternBtnWrap);
 
@@ -33,11 +46,30 @@ export const addPattern = () => {
         patternList.appendChild(li);
         patternCard.classList = "pattern-card";
         
+    
+}
+
+// DB에 패턴 추가하기
+const sendPattern = async () => {
+    const patternName = prompt("패턴이름");
+    alert(`${patternName}이(가) 추가 되었습니다.`);
+
+    const response = await axios({
+        url: `/api/${globals.userId}/createpattern`,
+        method: "POST",
+        data: {
+            patternName
+        }
+    });
+
+    if(response.status === 200){
+        addPattern(patternName);
     }
 }
 
+
 const init = () => {
-    patternAddBtn.addEventListener("click", addPattern);
+    patternAddBtn.addEventListener("click", sendPattern);
 }
 
 if(patternList){

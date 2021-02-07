@@ -1,7 +1,7 @@
-import routes from "../routes";
 import passport from "passport";
 import User from "../models/User";
 import Memo from "../models/Memo";
+
 
 export const home = (req, res) => {
     res.render("home");
@@ -52,9 +52,15 @@ export const postGoogleLogin = (req, res) => {
 export const getHome = async (req, res) => {
     const { params:{ id } } = req;
 
+    const dateObj = new Date();
+    const year = dateObj.getFullYear();
+    const month = dateObj.getMonth() < 9 ? '0' + (dateObj.getMonth()+1) : dateObj.getMonth()+1;
+    const date = dateObj.getDate() < 9 ? '0' + dateObj.getDate() : dateObj.getDate();
+    const today = `${year}${month}${date}`;
+
     try {
         const user = await User.findById(id);
-        const memoOfTheDay = user.memosMap.get(routes.day)
+        const memoOfTheDay = user.memosMap.get(today);
         
         if(memoOfTheDay !== undefined){
             const memos = await Memo.findById(memoOfTheDay._id);

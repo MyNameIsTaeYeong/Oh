@@ -1,18 +1,14 @@
 import mongoose from "mongoose";
 
 const PatternSchema = new mongoose.Schema({
-    id: Number,
-    createdAts: [{
-        type: Date,
-        default: Date.now
-    }],
     name: String,
-    value: Number,
-    related: [{
-        id:Number,
-        name: String,
-        value: String,
-        count: Number
+    // 패턴이 발생한 날들.
+    createdAts: [{
+        type: String
+    }],
+    relatedPattern : [{
+            type: Map,
+            of: Number
     }],
     createdBy: String
 });

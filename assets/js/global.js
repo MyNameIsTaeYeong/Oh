@@ -1,1 +1,0 @@
-export let globalDay = "202020";
