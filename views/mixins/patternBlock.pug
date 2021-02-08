@@ -3,6 +3,6 @@ mixin patternBlock(patternObj= {})
         .pattern-card
             p=patternObj.name
             div
-                button.far.fa-smile-beam
-                button.far.fa-meh
-                button.far.fa-tired
+                button(id=`${patternObj.index},good`).far.fa-smile-beam
+                button(id=`${patternObj.index},avg`).far.fa-meh
+                button(id=`${patternObj.index},bad`).far.fa-tired

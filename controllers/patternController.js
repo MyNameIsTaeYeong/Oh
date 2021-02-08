@@ -15,6 +15,7 @@ export const postCreatePattern = async (req, res) => {
         });
         user.patterns.push(pattern);
         user.save();
+        res.send({btnId: user.patterns.length-1});
     } catch (error) {
         console.log(error)
     } finally {
