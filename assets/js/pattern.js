@@ -13,11 +13,13 @@ const patternAddBtn = document.getElementById("pattern--add-Btn");
 
 
 // DB에 패턴 값 추가하기
-
+export const recordPatternValue = (event) => {
+    console.log(event.target.id);
+}
 
 
 // Fake UI
-export const addPattern = (patternName) => {
+export const addPattern = (patternName, btnId) => {
         const li = document.createElement("li");
         const patternCard = document.createElement("div");
         const patternBtnWrap = document.createElement("div");
@@ -25,6 +27,15 @@ export const addPattern = (patternName) => {
         const goodBtn = document.createElement("button");
         const averageBtn = document.createElement("button");
         const badBtn = document.createElement("button");
+
+        // 버튼에 아이디부여 1,good => 1번패턴의 good값의 아이디
+        goodBtn.id = `${btnId},good`;
+        averageBtn.id = `${btnId},avg`;
+        badBtn.id = `${btnId},bad`;
+
+        goodBtn.addEventListener("click", recordPatternValue);
+        averageBtn.addEventListener("click", recordPatternValue);
+        badBtn.addEventListener("click", recordPatternValue);
 
         goodBtn.classList.add("far");
         goodBtn.classList.add("fa-smile-beam");
@@ -50,7 +61,7 @@ export const addPattern = (patternName) => {
 }
 
 // DB에 패턴 추가하기
-const sendPattern = async () => {
+const createPattern = async () => {
     const patternName = prompt("패턴이름");
     alert(`${patternName}이(가) 추가 되었습니다.`);
 
@@ -63,13 +74,14 @@ const sendPattern = async () => {
     });
 
     if(response.status === 200){
-        addPattern(patternName);
+        // 컨트롤러에서 res.send에 데이터 객체를 받아와서 버튼아이디를 부여한다.
+        addPattern(patternName, response.data.btnId);
     }
 }
 
 
 const init = () => {
-    patternAddBtn.addEventListener("click", sendPattern);
+    patternAddBtn.addEventListener("click", createPattern);
 }
 
 if(patternList){

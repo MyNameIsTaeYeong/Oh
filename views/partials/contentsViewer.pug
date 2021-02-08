@@ -18,9 +18,10 @@ include ../mixins/patternBlock
                 .viewer__content--pattern
                     p.pattern--title 패턴
                     ul#js-patternList
-                        each pattern in patterns
+                        each pattern, index in patterns
                                 +patternBlock({
-                                    name:pattern.name
+                                    name:pattern.name,
+                                    index
                                 })
                     p.far.fa-plus-square.fa-2x#pattern--add-Btn
                 .viewer__content--todo
