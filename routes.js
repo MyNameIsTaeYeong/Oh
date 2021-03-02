@@ -15,6 +15,7 @@ const ADD_MEMO = "/:id/addmemo/:day"
 const VIEW_MEMO = "/:id/viewmemo/:day"
 const DELETE_MEMO = "/:id/deletememo/:day/:idx";
 const ADD_PATTERN = "/:id/createpattern";
+const RECORD_PATTERN = "/:id/recordpattern/:day";
 
 const routes = {
     home: HOME,
@@ -27,7 +28,8 @@ const routes = {
     userId: USER_ID,
     viewMemo: VIEW_MEMO,
     deleteMemo: DELETE_MEMO,
-    addPattern: ADD_PATTERN
+    addPattern: ADD_PATTERN,
+    recordPattern: RECORD_PATTERN
 };
 
 export default routes;

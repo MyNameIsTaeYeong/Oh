@@ -31,7 +31,10 @@ const UserSchema = new mongoose.Schema({
     // 날짜를 키값으로 패턴들의 값을 기록
     patternsMap:{
         type: Map,
-        of: patternOfTheDay
+        of: patternOfTheDay,
+        default: { 
+            "oh" : { patternsValue : [] }    
+        }
     },
 
     // 전체 통계를 위한 패턴배열.
