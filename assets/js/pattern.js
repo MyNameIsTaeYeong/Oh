@@ -11,10 +11,24 @@ const patternAddBtn = document.getElementById("pattern--add-Btn");
     3. 유저가 가지고 있는 패턴들의 relatedPattern요소에서 해당패턴 인덱스 지우기
 */
 
+const paintPattern = () => {
+    
+}
 
 // DB에 패턴 값 추가하기
-export const recordPatternValue = (event) => {
-    console.log(event.target.id);
+export const recordPatternValue = async (event) => {
+    const response = await axios({
+        url: `/api/${globals.userId}/recordpattern/${globals.day}`,
+        method: "POST",
+        data:{
+            patternIndexAndValue: event.target.id
+        }
+    });
+
+    if(response.status === 200){
+        
+        //paintPattern();
+    }
 }
 
 
