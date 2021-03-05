@@ -1,6 +1,6 @@
 import User from "../models/User";
 import Pattern from "../models/Pattern";
-
+import RelatedPattern from "../models/RelatedPattern";
 
 /*
     패턴삭제 순서
@@ -12,10 +12,13 @@ import Pattern from "../models/Pattern";
 /*
     패턴기록 순서
     1. 해당 패턴 find
-    2. 해당날짜에 대한 패턴맵 기록 
+    2. 해당날짜에 대한 패턴맵 기록. 예) "20210303" : { patternsValue : ["good", null, null, "bad", ...] }
     3. 해당 날짜에서 연관된 패턴 기록
     4. 연관된 패턴들에 대해서도 발생한패턴 기록
 */
+
+
+
 export const postRecordPattern = async (req, res) => {
     const {
         params: { id, day },
@@ -54,23 +57,79 @@ export const postRecordPattern = async (req, res) => {
             3. 해당 날짜에서 연관된 패턴 기록
             
             - 패턴맵안에 있는 패턴값배열을 이용하여 기록한 패턴 이외의 값들을 알아낸다.
-        */
+        */  
 
-        console.log(pattern);
+        // 예) patternsValue : ["good", null, null, "bad", ...]
+        const patternsValue = patternOfTheDay.patternsValue;
+        let indexOfPatternsAssociatedWithValues;
+        
+        switch (valueOfPattern) {
+            case "good":
+                indexOfPatternsAssociatedWithValues = 0;
+                break;
+            case "avg":
+                indexOfPatternsAssociatedWithValues = 1;
+                break;
+            case "bad":
+                indexOfPatternsAssociatedWithValues = 2;
+                break;
+            default:
+                console.log("It shouldn't be print out");
+                break;
+        }
+
+        const relatedPatternId = pattern.patternsAssociatedWithValues[indexOfPatternsAssociatedWithValues];
+        
+        
+
+        const relatedPattern = await RelatedPattern.findById(relatedPatternId);
+        
+        /* 
+            relatedPatterns : 맵을 저장하는 배열
+            예) 
+
+            [ 
+                {
+                    "good" : 7,
+                    "avg" : 1,
+                    "bad" : 3
+                }, ... 
+            ]
+            
+        */ 
+        const relatedPatterns = relatedPattern.relatedPatterns;
+
+        console.log(patternsValue);
+
+        // patternsValue에 있는 값들을 기록.
+        for(let i=0; i<patternsValue.length; i++){
+            if(patternsValue[i] === null || patternsValue[i] === undefined) {
+                continue;
+            }
+            if(i === indexOfPattern){
+                continue;
+            }
+            if(relatedPatterns[i] === undefined || relatedPatterns[i] === null){
+                
+
+                // 터지는 부분
+                relatedPatterns[i] = {
+                    "good" : 0,
+                    "avg" : 0,
+                    "bad" : 0
+                }
+
+
+
+
+
+            }
+            
+        }
+        
+        relatedPattern.save();
 
         // 4. 연관된 패턴들에 대해서도 발생한패턴 기록
-
-        if(valueOfPattern === "good"){
-            //pattern.theDayGoodOccurred.push(day);
-
-        } 
-        else if(valueOfPattern === "avg"){
-
-        } 
-        else if(valueOfPattern === "bad"){
-
-        }   
-
 
     } catch (error) {
         console.log(error);
@@ -91,6 +150,12 @@ export const postCreatePattern = async (req, res) => {
             name: patternName,
             createdBy: user.email
         });
+
+        for(let i=0; i<3; i++){
+            const relatedPattern = await RelatedPattern.create({});
+            pattern.patternsAssociatedWithValues.push(relatedPattern);
+        }
+        pattern.save();
         user.patterns.push(pattern);
         user.save();
         res.send({btnId: user.patterns.length-1});
