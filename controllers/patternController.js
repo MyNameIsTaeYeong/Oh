@@ -27,7 +27,7 @@ export const postRecordPattern = async (req, res) => {
 
     // values[0] : 패턴index, values[1] : 패턴값
     const values = patternIndexAndValue.split(",");
-    const indexOfPattern = values[0];
+    const indexOfPattern = parseInt(values[0]);
     const valueOfPattern = values[1];
 
     try {
@@ -106,28 +106,27 @@ export const postRecordPattern = async (req, res) => {
             if(patternsValue[i] === null || patternsValue[i] === undefined) {
                 continue;
             }
+            
             if(i === indexOfPattern){
                 continue;
             }
             if(relatedPatterns[i] === undefined || relatedPatterns[i] === null){
-                
-
+                let myMap = new Map();
+                myMap.set("good", 0);
+                myMap.set("avg", 0);
+                myMap.set("bad", 0);
                 // 터지는 부분
-                relatedPatterns[i] = {
-                    "good" : 0,
-                    "avg" : 0,
-                    "bad" : 0
-                }
-
-
-
-
-
+                relatedPatterns[i] = myMap;
             }
+
+
             
         }
         
         relatedPattern.save();
+
+
+        console.log(relatedPattern);
 
         // 4. 연관된 패턴들에 대해서도 발생한패턴 기록
 
